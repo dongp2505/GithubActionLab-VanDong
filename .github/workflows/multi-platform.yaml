@@ -1,0 +1,47 @@
+name: Workflow 3 - Multi-Platform
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ubuntu-job:
+    name: Ubuntu Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: OS info
+        run: uname -a
+      - name: Create and read file
+        run: |
+          echo "Hello from Ubuntu" > hello.txt
+          cat hello.txt
+
+  windows-job:
+    name: Windows Job
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: OS info
+        run: systeminfo
+        shell: cmd
+      - name: Create and read file
+        run: |
+          echo Hello from Windows > hello.txt
+          type hello.txt
+        shell: cmd
+
+  macos-job:
+    name: macOS Job
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: OS info
+        run: uname -a
+      - name: Create and read file
+        run: |
+          echo "Hello from macOS" > hello.txt
+          cat hello.txt
